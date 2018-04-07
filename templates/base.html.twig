@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Association auprès des jeunes démunis">
+
+    <link rel="icon" href="{{ asset('img/elements/logo_adjd.png') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.structure.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.theme.min.css') }}">
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+
+<body>
+{#-----------------
+-------------------
+---HEADER NAVBAR---
+-------------------
+-------------------#}
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent px- flex-wrap ml-5">
+    <a href="{{ path('homepage') }}"><img src="{{ asset('img/elements/logo_adjd.svg') }}" alt="logo"
+                                          class="logo_navbar rounded"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span>
+    </button>
+
+    <div class="col-lg-9 collapse navbar-collapse p-lg-0" id="navbarSupportedContent">
+        <div class="col-12 nav-wrap d-flex flex-wrap p-0 justify-content-end">
+            <ul class="col-lg-8 navbar-nav mt-sm-0 py-3 py-lg-0 px-0 justify-content-center">
+                <div class="row flex-column flex-lg-row text-center justify-content-center align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('homepage') }}">ACCUEIL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('projects') }}">Projets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('photos') }}">Photos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('partners') }}">Partenaires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('help_us') }}">Aidez-nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('contact') }}">CONTACT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('a_propos') }}" class="nav-link">A propos</a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('administration') }}">ADMINISTRATION</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('security_logout') }}" class="btn btn-primary mx-auto">Deconnexion</a>
+                        </li>
+                    {% else %}
+                        <li class="ml-5"><a href="{{ path('security_login') }}"><i class="fas fa-lock"></i></a></li>
+                    {% endif %}
+
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{#-----------------
+--------------------
+--ENCART-------------
+--------------------
+-------------------#}
+<div id="encart" class="deactivated">
+    <div id="onglet" class="activated"><i class="fas fa-caret-left triangle" id="fa-icon"></i>
+    </div>
+    <div id="encart_elements">
+        {#<div id="show_datepicker" class="encart-element">
+            <h5>Les date des prochains projets</h5>
+            <div id="datepicker"></div>
+            <hr>
+        </div>#}
+        <div id="last_project" class="encart-element">
+            <h5>Notre dernier projet !</h5>
+            {% if lastProject.id is defined %}
+                <a href="{{ path('project', {'id': lastProject.id}) }}"><span
+                            class="lastProject">{{ lastProject.title|capitalize }} </span><i
+                            class="far fa-hand-point-right" style="font-size: 2em"></i></a>
+            {% else %}
+                <p>Pas de projet en cours</p>
+            {% endif %}
+            <hr>
+        </div>
+        <div id="aidez_nous" class="encart-element mb-5">
+            <h5>Aidez-nous !</h5>
+            <p>Soutenez-nous en faisant un don <br> ou en achetant un de nos t-shirt !</p>
+
+            <a href="{{ path('help_us') }}"><img src="{{ asset('img/elements/money-gift.svg') }}" id="gift-money"
+                                                 alt="gift-money"> <span class="text-light" style="font-size: 2em">C'est par ici !  </span><i
+                        class="far fa-hand-point-right" style="font-size: 2em"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+    {% block body %}
+    {% endblock %}
+</div>
+
+
+{#----------------
+------------------
+-----FOOTER-------
+------------------
+------------------#}
+<div id="footer">
+    <div class="row p-5 justify-content-center" id="footerLinks">
+        <div class="col-md-3 text-center text-light ">
+            <img src="{{ asset('img/elements/logo_adjd.svg') }}" alt="adjd" style="height: 200px">
+            {#<a href="#"><i class="fab fa-facebook-square fa-2x m-2" aria-hidden="true"></i></a>
+            <a href="#"><i class="fab fa-twitter-square fa-2x m-2" aria-hidden="true"></i></a>
+            <a href="#"><i class="fab fa-youtube-square fa-2x m-2" aria-hidden="true"></i></a>#}
+        </div>
+        <div class="col-md-6 text-center">
+            <div class="row">
+                <div class="col-lg-12 col-xl-8 ">
+                    <div class="mx-auto" id="map"></div>
+                </div>
+                <div class="col-lg-12 col-xl-4 text-light">
+                    <h3>Adresse ADJD :</h3>
+                    <p>8 Avenue Maurice Ravel, 69140 Rillieux-la-Pape</p>
+                    <h3>Téléphone:</h3>
+                    <p>06 65 72 15 64</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <ul class="text-center nav flex-column">
+                <li class="nav-item"><a href="{{ path('a_propos') }}" class="nav-link">A propos</a></li>
+                <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="{{ path('faq') }}" class="nav-link">FAQ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Copyright</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Mentions légales</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="{{ asset('js/base.js') }}"></script>
+<script>
+    $('.dropdown-toggle').dropdown();
+</script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+{#<script src="{{ asset('js/datepicker.js') }}"></script>#}
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZ_kobrKdTvJ7U_3LbITXVfKIrxq2QNx8&callback=initMap">
+</script>
+
+{% block javascripts %}
+
+{% endblock %}
+</body>
+</html>

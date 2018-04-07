@@ -1,0 +1,25 @@
+.banner {
+    background: linear-gradient(-225deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%), url("../img/elements/banner.jpg");
+    color: white;
+    text-align: center;
+    height: 105vh;
+    background-size: cover !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#explication img {
+    height: 100px;
+    width: 100px;
+}
+
+#explication {
+    padding: 60px 0 60px 0;
+}
+.container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+

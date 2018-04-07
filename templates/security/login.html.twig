@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <section class="my-5">
+        <div class="row my-5">
+            <div class="col-sm-8 mx-auto my-5">
+                <div class="container">
+                    <div class="heading">
+                        <h2>Connectez-vous pour acceder à la partie administration !</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 mx-auto my-5">
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey|trans(error.messageData,'security') }}
+                </div>
+            {% endif %}
+                {{ form_start(form) }}
+                {{ form_row(form._username) }}
+                {{ form_row(form._password) }}
+                <button class="btn btn-primary">Connexion</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{{ asset('js/apropos.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,64 @@
+.flex-item > img {
+    max-height: 350px;
+    max-width: 300px;
+    min-width: 200px;
+    border-radius: 25px;
+    object-fit: cover;
+}
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-item {
+    flex: 1;
+    max-height: 400px;
+    max-width:  300px;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+}
+
+.img-carousel {
+    width: 100%;
+    background: url("../img/elements/nature.jpg") no-repeat center fixed;
+    -webkit-background-size: contain; /* pour anciens Chrome et Safari */
+    background-size: contain;
+    max-height: 350px;
+    display: block;
+    border-radius: 25px;
+    object-fit: contain;
+}
+
+.delete-button {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    box-shadow: 3px 3px 6px 2px grey;
+    -moz-box-shadow: 3px 3px 6px 2px grey;
+    -webkit-box-shadow: 3px 3px 6px grey;
+}
+
+.photos {
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    box-shadow: 3px 3px 6px 2px black;
+    -moz-box-shadow: 3px 3px 6px 2px black;
+    -webkit-box-shadow: 3px 3px 6px black;
+}
+
+#slider1{
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    box-shadow: 3px 3px 6px 2px black;
+    -moz-box-shadow: 3px 3px 6px 2px black;
+    -webkit-box-shadow: 3px 3px 6px black;
+}
+
+

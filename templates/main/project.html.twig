@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/project.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section class="mt-5 mb-5">
+        <div class="container mb-0 mb-md-4">
+            <div class="heading">
+                <h2>Notre projet en détail</h2>
+                <span>N'hésitez pas à nous donner votre avis en nous envoyant un message ici ! <a href="{{ path('contact') }}"><img src="{{ asset('img/elements/send-email.svg') }}" id="emailIcon"></a> </span>
+            </div>
+
+            <h3 class="my-4 mt-md-0 text-center text-md-left d-sm-block d-md-none">{{ project.title|upper }}</h3>
+
+            <div class="flex-wrap media align-items-center justify-content-center">
+                <img class="col-12 col-md-4 rounded mr-md-4 p-0" src="{{ asset('img/uploads/'~project.image) }}" alt="image d'actualité">
+                <div class="media-body col-12 col-md-8 p-0">
+                    <h3 class="mt-4 mt-md-0 text-center text-md-left d-sm-none d-md-block">{{ project.title|upper }}</h3>
+                    <p class="mt-4 mt-md-0 text-justify">{{ project.content|raw }}</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

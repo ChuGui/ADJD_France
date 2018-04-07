@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/error.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section>
+        <div class="row">
+            <div class="col-sm-8 mx-auto">
+                <div class="container">
+                    <div class="heading">
+                        <h2>Oups !</h2>
+                        <h3>On dirait qu'une erreur s'est produite!</h3>
+                        <p><img src="{{ asset('img/elements/error.png') }}" alt="error404" style="height: 300px;"></p>
+                        <h4>Retour à l'accueil <a href="{{ path('homepage') }}"><i class="fas fa-home"></i></a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

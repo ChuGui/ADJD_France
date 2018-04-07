@@ -1,0 +1,187 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/help_us.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-8 mx-auto my-5 container">
+            <div class="heading">
+                <h2>Bienvenue sur notre page de dons !</h2>
+                <span>Grâce à vos dons, vous allez permettre aux jeunes démunis de l'association de bénéficier d’aides.
+                    <br>
+                Merci à vous tous.
+                    <br>
+Sachez que nos portes restent ouvertes toute l’année à nos donateurs pour que vous puissiez apprécier concrètement la façon dont est dépensé l’argent issu de vos dons.</span>
+            </div>
+            {% for message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            <div class="row choices-container justify-content-between">
+                <div class="col-sm-5 col-xs-10 choice-container" id="faireUnDon">
+                    <h5>Aidez-nous en faisant un don</h5>
+                    <div class="mx-auto">
+                        <img src="{{ asset('img/elements/money-gift.svg') }}" alt="don">
+                    </div>
+                </div>
+
+                <div class="col-sm-5 col-xs-10 choice-container" id="buyTshirt">
+                    <h5>Aidez-nous en achetant un de nos T-shirt</h5>
+                    <div class="mx-auto">
+                        <img src="{{ asset('img/elements/shirt.svg') }}" alt="t-shirt">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {#-----MODAL DON-----#}
+    <div class="modal modal-alert pt-5 " id="donModal">
+        <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
+            <button type="button" class="btn btn-danger delete-button" data-dismiss="modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-dialog">
+            <div class="modal-content col-12 mx-auto p-5">
+                <div class="d-flex flex-column">
+                    <div class="modal-title heading row justify-content-center mb-3">
+                        <h2>Faites un don facilement</h2>
+                        <p> Paiement sécurisé avec Stripe <i class="fas fa-lock"></i></p>
+                    </div>
+                    <form action="{{ path('help_us_donation') }}" method="post" id="payment-form">
+                        <div class="form-group row">
+                            <label for="amount" class="col-8">Montant de la donnation</label>
+                            <input
+                                    class="form-control col-3"
+                                    id="amount"
+                                    name="amount"
+                                    type="number"
+                                    id="replyNumber"
+                                    min="0"
+                                    step="1"
+                                    data-bind="value:replyNumber"
+                                    required
+                                    value="10"
+                            />
+                            <div class="col-1"><i class="fas fa-euro-sign"></i></div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-4">Nom</label>
+                            <input
+                                    class="form-control col-8"
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    id="name"
+                                    required
+                            />
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-4">Email</label>
+                            <input
+                                    class="form-control col-8"
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    id="email"
+                                    required
+                            />
+                        </div>
+                        <div class="form-row row">
+                            <label class="col-12" for="card-element">
+                                Carte de crédit ou de débit :
+                            </label>
+                            <div id="card-element" class="col-12">
+                                <!-- a Stripe Element will be inserted here. -->
+                            </div>
+
+                            <!-- Used to display form errors -->
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+
+                        <button class="payment-button">Procéder à la donation</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {#-----END MODAL DON-----#}
+
+    {#-----MODAL T-shirt-----#}
+    <div class="modal modal-alert pt-5" id="t-shirtModal">
+        <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
+            <button type="button" class="btn btn-danger delete-button" data-dismiss="modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-dialog">
+            <div class="modal-content col-12 mx-auto">
+                <div class="d-flex flex-column">
+                    <div class="modal-title heading row justify-content-center mb-3">
+                        <h2>Selectionner vos t-shirt</h2>
+                    </div>
+                    <form action="{{ path('help_us_t_shirt') }}" method="post" id="t-shirt-form" class="mb-3">
+                        <div class="form-group">
+                            <label for="size_1">Taille du t-shirt</label>
+                            <select name="size_1" id="size_1" class="form-control">
+                                <option value="small">S</option>
+                                <option value="medium">M</option>
+                                <option value="large">L</option>
+                            </select>
+                        </div>
+                        <div class="row my-4" id="add-t-shirt">
+                            <div class="col-9">
+                                <p>Ajouter un T-shirt à la commande</p>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-success add-button">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-8"><h5>Montant total:</h5></div>
+                            <div class="col-1"><p id="montant"> 20 </p></div>
+                            <div class="col-3"><i class="fas fa-euro-sign"></i></div>
+                        </div>
+                        <hr>
+                        <div class="form-row row mb-2">
+                            <div class="col-12 form-group">
+                                <label for="address">Votre adresse complète:</label>
+                                <input class="form-control" type="text" name="address" id="address"
+                                       placeholder="Ma rue, ma ville, mon code postal..." required>
+                            </div>
+                            <div class="col-12 form-group">
+                                <label for="email">Votre email:</label>
+                                <input class="form-control" type="email" name="email" id="email"
+                                       placeholder="mon@email.com" required>
+                            </div>
+                            <label class="col-12" for="card-element-t-shirt">
+                                Carte de crédit ou de débit :
+                            </label>
+                            <div id="card-element-t-shirt" class="col-12">
+                                <!-- a Stripe Element will be inserted here. -->
+                            </div>
+
+                            <!-- Used to display form errors -->
+                            <div id="card-errors-t-shirt" role="alert"></div>
+                        </div>
+                        <button class="payment-button">Payer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {#-----END MODAL T-shirt-----#}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{{ asset('js/help_us.js') }}"></script>
+{% endblock %}

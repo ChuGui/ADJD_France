@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/administration.css') }}">
+{% endblock %}
+{% block body %}
+    <section id="administration" style="width: 100%">
+        <div class="container">
+            <div class="heading">
+                <h2>Bonjour Administrateur !</h2>
+                <span>Ici, vous pouvez ajouter de nouvelles images à la galerie ou ajouter un nouveau projet !</span>
+            </div>
+
+            <!-- Nav tabs -->
+            {% for message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            {% for message in app.session.flashBag.get('alert') %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link nav-administration active" data-toggle="tab" href="#addPicture" role="tab">Ajouter un photo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-administration" data-toggle="tab" href="#addProject" role="tab">Ajouter un projet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-administration" data-toggle="tab" href="#addPartner" role="tab">Ajouter un partenaire</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-administration" data-toggle="tab" href="#addMember" role="tab">Ajouter un membre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-administration" data-toggle="tab" href="#parameters" role="tab">Ajouter un admin</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="addPicture" role="tabpanel">
+                    <div class="formAdd">
+                        <h3> Ajouter une photo à la galerie d'image !</h3>
+                        {{ form_start(formGallery) }}
+                        {{ form_row(formGallery.imageFile) }}
+                        {{ form_row(formGallery.legend) }}
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                        {{ form_end(formGallery) }}
+                    </div>
+                </div>
+                <div class="tab-pane" id="addProject" role="tabpanel">
+                    <div class="formAdd">
+                        <h3> Expliquez votre projet au monde entier !</h3>
+                        {{ form_start(formProject) }}
+                        {{ form_row(formProject.title) }}
+                        {{ form_row(formProject.imageFile) }}
+                        {{ form_row(formProject.content) }}
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                        {{ form_end(formProject) }}
+                    </div>
+                </div>
+                <div class="tab-pane" id="addPartner" role="tabpanel">
+                    <div class="formAdd">
+                        <h3> Remerciez vos partenaires !</h3>
+                        {{ form_start(formPartner) }}
+                        {{ form_row(formPartner.name) }}
+                        {{ form_row(formPartner.imageFile) }}
+                        {{ form_row(formPartner.description) }}
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                        {{ form_end(formPartner) }}
+                    </div>
+                </div>
+                <div class="tab-pane" id="addMember" role="tabpanel">
+                    <div class="formAdd">
+                        <h3> Ajoutez un nouveau membre !</h3>
+                        <div class="row">
+                            <div class="col-sm-8 mx-auto">
+                                {{ form_start(formMember) }}
+                                {{ form_row(formMember.name) }}
+                                {{ form_row(formMember.role) }}
+                                {{ form_row(formMember.status) }}
+                                {{ form_row(formMember.imageFile) }}
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                                {{ form_end(formMember) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="parameters" role="tabpanel">
+                    <div class="formAdd">
+                        <h3> Ajoutez un nouvel admin !</h3>
+                        <div class="row">
+                            <div class="col-sm-8 mx-auto">
+                                {{ form_start(formUser) }}
+                                {{ form_row(formUser.username, {
+                                    'label' : 'Pseudo'
+                                }) }}
+                                {{ form_row(formUser.plainPassword.first, {
+                                    'label' : 'Mot de passe'
+                                }) }}
+                                {{ form_row(formUser.plainPassword.second, {
+                                    'label' : 'Confirmer mot de passe'
+                                }) }}
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                                {{ form_end(formUser) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block  javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+{% endblock %}

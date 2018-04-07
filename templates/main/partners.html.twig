@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/partners.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    <section class="mt-5 mb-5">
+        <div class="container mb-0 mb-md-4">
+            <div class="heading">
+                <h2>Nos partenaires !</h2>
+                <span>Nous tenons à remercier nos partenaire sans lesquels nous en serions pas ici aujourd'hui !</span>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-11 mx-auto">
+                    <div class="flex-container">
+                        {% for partner in partners %}
+                            <div class="flex-item">
+                                <h3>{{ partner.name }}</h3>
+                                <img src="img/uploads/{{ partner.image }}" alt="{{ partner.name }}">
+                                <p>{{ partner.description | capitalize }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+{% endblock %}

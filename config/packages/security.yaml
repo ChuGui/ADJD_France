@@ -1,0 +1,23 @@
+security:
+    encoders:
+        App\Entity\User: bcrypt
+    providers:
+        my_db_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            guard:
+                authenticators:
+                    - app.security.login_form_authenticator
+
+            logout:
+                path: /logout
+
+    access_control:
+         - { path: ^/administration, roles: ROLE_ADMIN }

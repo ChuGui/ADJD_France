@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/projects.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section class="mt-5 mb-5">
+        <div class="container-fluid">
+            <div class="heading">
+                <h2>Quels sont nos futurs projets ?</h2>
+                <span>Voici tous nos projets qui prennent vie grâce à votre soutien. Merci pour votre aide !</span>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 mx-auto">
+                    <div class="row justify-content-between">
+                        {% for project in projects %}
+                            <div class="col-sm-6 col-md-3 mx-1 project-container" id="project_{{ project.id }}">
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <button href="#" class="btn btn-danger delete-button" data-project-id="{{ project.id }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                {% endif %}
+                                <div class="card p-0">
+                                    <div class="mb-4">
+                                        <a href="{{ path('project', {'id': project.id}) }}">
+                                            <img class="card-img-top" src="{{ asset('img/uploads/'~ project.image) }}"
+                                                 alt="image_actualite">
+                                        </a>
+                                    </div>
+                                    <div class="card-title text-center px-3 mb-0">
+                                        <h3>
+                                            <a href="{{ path('project', {'id': project.id}) }}">{{ project.title|upper }}</a>
+                                        </h3>
+                                        <p class="text-white">Ajouté le
+                                            : {{ project.updatedAt|localizeddate('none', 'none', null, null, 'd / m / Y') }}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {#-----MODAL DELETE PROJET-----#}
+                            <div class="modal modal-alert pt-5 " id="deleteProjectModal_{{ project.id }}">
+                                <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
+                                    <button type="button" class="btn btn-danger delete-button" data-dismiss="modal">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-dialog">
+                                    <div class="modal-content col-12 mx-auto">
+                                        <div class="d-flex flex-column">
+                                            <div class="modal-title heading row justify-content-center mb-3">
+                                                <h2>Voulez-vous supprimer définitivement  ce projet ?</h2>
+                                            </div>
+
+                                            <div class="d-flex flex-column flex-sm-row justify-content-around mx-auto mb-3" id="buttons">
+                                                <button class="btn btn-outline" data-dismiss="modal">Non</button>
+                                                <button class="btn btn-primary ml-0 ml-sm-3 mt-3 mt-sm-0 confirm-delete" type="submit" data-dismiss="modal" data-project-id="{{ project.id }}" data-url="{{ path('delete_project') }}" >Oui</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {#-----END MODAL DELETE PHOTO-----#}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/projects.js') }}"></script>
+{% endblock %}

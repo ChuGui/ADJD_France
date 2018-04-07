@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+{% endblock %}
+{% block title %}
+    ASSOCIATION Auprès des jeunes démunis
+{% endblock %}
+{% block body %}
+    <div class="banner">
+        <div class="card  text-center mx-auto bg-transparent" style="width: 75%">
+            <div class="home-heading">
+                <h1 class="home-title">A.D.J.D - Auprès des jeunes démunis</h1>
+            </div>
+            <div class="container text-center mt-3">
+                <a href="{{ path('help_us') }}" class="btn btn-primary mx-auto">FAIRE UN DON</a>
+            </div>
+
+        </div>
+    </div>
+
+    <section id="explication" style="width: 100%">
+        <div class="container">
+            <div class="heading">
+                <h2>Bienvenue !</h2>
+                <span>L'association Auprès des jeunes démunis est heureuse de vous acceuillir sur son site !</span>
+            </div>
+
+            <div class="media flex-wrap align-items-center justify-content-center my-3">
+                <img class="col-12 col-lg-4 " src="{{ asset('img/elements/5_men_1_heart.svg') }}" alt="Présentation de l'adjd">
+                <div class="media-body col-12 col-lg-8">
+                    <h3 class="mt-3 mt-md-0 text-center text-md-left">Qui sommes-nous ?</h3>
+                    <p class="text-justify"><strong>ADJD (Auprès des jeunes démunis)</strong> est une association loi  de solidarité  a but non lucratif. Déclarée le 29/09/2008 à la préfecture du Rhône et publiée au journal officiel ( annonce n°01312 ) le 28/10/2008.</p>
+                </div>
+            </div>
+
+            <div class="media flex-wrap align-items-center justify-content-center my-3">
+                <img class="col-12 col-md-4 order-sm-2" src="{{ asset('img/elements/goal.svg') }}" alt="Objectifs de l'adjd">
+                <div class="media-body col-12 col-md-8 order-sm-1">
+                    <h3 class="mt-3 mt-md-0 text-center text-md-left">Notre objectif !</h3>
+                    <p class="text-justify">Le but de l'<strong>ADJD</strong> est le développement local,  durable, l'insertion des jeunes, l'éducation populaire par la culture, le sport, l'agriculture, l'élévage, la santé, l'assainissement, l'urbanisation et l'accès à l'eau potable. !</p>
+                </div>
+            </div>
+
+
+            <div class="media flex-wrap align-items-center justify-content-center my-3">
+                <img class="col-12 col-md-4" src="{{ asset('img/elements/school.svg') }}" alt="Les activités de l'adjd">
+                <div class="media-body col-12 col-md-8">
+                    <h3 class="mt-3 mt-md-0 text-center text-md-left">Nos activités</h3>
+                    <p class="text-justify">Pour arriver à notre objectif, l'<strong>ADJD</strong> utilise plusieurs moyens. La formation et  l'encadrement est sa force. Les conférences et les séminaires ainsi que les soirées solidaires nous permettent de nous faire connaître. Les fêtes, les repas, les actions citoyennes et les projets avec les jeunes nous permettent d'aider ce qui ont besoin de soutient </p>
+                </div>
+            </div>
+            <div class="container text-center mt-3">
+                <a href="{{ path('projects') }}" class="btn btn-primary mx-auto">NOS PROJETS</a>
+            </div>
+        </div>{#Container#}
+    </section>
+{% endblock %}
