@@ -137,4 +137,50 @@ class AdminController extends Controller
             return $this->redirect($this->generateUrl('homepage'));
         }
     }
+
+    /**
+     * @Route("/delete_partner", name="delete_partner")
+     * @Method({"GET"})
+     */
+    function deletePartner(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $partnerId = $request->query->get('partnerId');
+            $partner = $em->getRepository('App:Gallery')->find($partnerId);
+            if ($partner !== null) {
+                $em->remove($partner);
+                $em->flush();
+                $response = new Response ('Partenaire correctement supprimé');
+                return $response;
+            } else {
+                return new Response('Aucun partenaire avec cet ID', 404);
+            }
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+    }
+
+    /**
+     * @Route("/delete_member", name="delete_member")
+     * @Method({"GET"})
+     */
+    function deleteMember(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $memberId = $request->query->get('memberId');
+            $Member = $em->getRepository('App:Gallery')->find($memberId);
+            if ($Member !== null) {
+                $em->remove($Member);
+                $em->flush();
+                $response = new Response ('Membre correctement supprimé');
+                return $response;
+            } else {
+                return new Response('Aucun membre avec cet ID', 404);
+            }
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+    }
 }
