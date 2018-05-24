@@ -8,6 +8,7 @@
     --black: #262626;
     --dark: #3e3e3e;
     --brown: #A89988;
+    --pampas: #e3dfdd;
 }
 
 /*BODY*/
@@ -20,7 +21,31 @@ body {
     background-image: url("../img/elements/wood1.png");
 }
 
+h2 {
+    font-family: 'Droid Serif', Georgia, Times, serif;
+    font-size: 49px;
+    line-height: 65px;
+}
 
+h3 {
+    font-family: 'Droid Serif', Georgia, Times, serif;
+    font-size: 39px;
+    line-height: 56px;
+}
+
+p {
+    font-family: 'Josefin Sans', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 25px;
+    margin-top: 15px;
+}
+
+.sous-titre {
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 25px;
+    text-transform: uppercase;
+}
 
 .tuille-container {
     background: linear-gradient(70deg, var(--green), var(--very-light-green));
@@ -134,7 +159,6 @@ body {
     z-index: 2;
     text-shadow: 0 0 20px black;
 }
-
 
 .lastProject {
     font-size: 2em;

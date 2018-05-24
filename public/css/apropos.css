@@ -1,19 +1,15 @@
 .memberContainer {
-    border: 4px double white;
-    padding: 0 10px;
-    margin: 30px 0 30px 0;
+    background: var(--pampas);
     border-radius: 10px;
-    background: linear-gradient(10deg, var(--green), var(--very-light-green));
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    box-shadow: 3px 3px 6px 2px #A9A9A9;
-    -moz-box-shadow: 3px 3px 6px 2px #A9A9A9;
-    -webkit-box-shadow: 3px 3px 6px #A9A9A9;
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .userPicture {
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
 }
 

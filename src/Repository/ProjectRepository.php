@@ -30,5 +30,4 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         ;
         return $lastProject;
     }
-
 }

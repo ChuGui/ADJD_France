@@ -82,13 +82,19 @@ class AdminController extends Controller
             $this->addFlash('notice', "Le nouvel admin " . $user->getUsername() . ", à bien été rajouté");
             return $this->redirectToRoute('administration');
         }
+
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
+
         return $this->render('main/administration.html.twig', array(
             "formGallery" => $formGallery->createView(),
             "formProject" => $formProject->createView(),
             "formPartner" => $formPartner->createView(),
             "formMember" => $formMember->createView(),
             "formUser" => $formUser->createView(),
-            "lastProject" => $lastProject
+            "lastProject" => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 
@@ -147,7 +153,7 @@ class AdminController extends Controller
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
             $partnerId = $request->query->get('partnerId');
-            $partner = $em->getRepository('App:Gallery')->find($partnerId);
+            $partner = $em->getRepository('App:Partner')->find($partnerId);
             if ($partner !== null) {
                 $em->remove($partner);
                 $em->flush();
@@ -169,12 +175,34 @@ class AdminController extends Controller
     {
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
-            $memberId = $request->query->get('memberId');
-            $Member = $em->getRepository('App:Gallery')->find($memberId);
+            $memberId = $request->query->get('id');
+            $Member = $em->getRepository('App:Member')->find($memberId);
             if ($Member !== null) {
                 $em->remove($Member);
                 $em->flush();
                 $response = new Response ('Membre correctement supprimé');
+                return $response;
+            } else {
+                return new Response('Aucun membre avec cet ID', 404);
+            }
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+    }
+
+    /**
+     * @Route("/get_text", name="get_text")
+     * @Method({"GET"})
+     */
+    function getText(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $textId = $request->query->get('textId');
+            $text = $em->getRepository('App:Text')->find($textId);
+            $content = $text->getContent();
+            if ($text !== null) {
+                $response = new Response ($content, Response::HTTP_OK, array('content-type' => 'text/html'));
                 return $response;
             } else {
                 return new Response('Aucun membre avec cet ID', 404);

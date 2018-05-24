@@ -1,5 +1,13 @@
-.partner-tile > img {
-    max-height: 200px;
-    max-width: 150px;
+.partner-img {
+    max-height: 150px;
+    max-width: 200px;
     border-radius: 5px;
+}
+
+@media screen and (max-width: 650px) {
+    .partner-img {
+        max-height: 75px;
+        max-width: 100px;
+        border-radius: 5px;
+    }
 }

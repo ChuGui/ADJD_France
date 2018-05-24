@@ -19,8 +19,20 @@ class MainController extends AbstractController
     function homepage() {
         $em = $this->getDoctrine()->getManager();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $textBanner = $em->getRepository('App:Text')->find(1);
+        $panneau01 = $em->getRepository('App:Text')->find(2);
+        $panneau02 = $em->getRepository('App:Text')->find(3);
+        $panneau03 = $em->getRepository('App:Text')->find(4);
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/homepage.html.twig', array(
-            'lastProject' => $lastProject
+            'lastProject' => $lastProject,
+            'textBanner' => $textBanner,
+            'panneau01' => $panneau01,
+            'panneau02' => $panneau02,
+            'panneau03' => $panneau03,
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 
@@ -31,9 +43,13 @@ class MainController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository(Project::class)->findAllDescDate();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/projects.html.twig', array(
             'projects' => $projects,
-            'lastProject' => $lastProject
+            'lastProject' => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 
@@ -44,9 +60,13 @@ class MainController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository(Project::class)->find($id);
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/project.html.twig', array(
             'project' => $project,
-            'lastProject' => $lastProject
+            'lastProject' => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 
@@ -58,9 +78,13 @@ class MainController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $partners = $em->getRepository(Partner::class)->findAll();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/partners.html.twig', array(
             'partners' => $partners,
-            'lastProject' => $lastProject
+            'lastProject' => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 
@@ -71,9 +95,13 @@ class MainController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $galleries = $em->getRepository('App:Gallery')->findAll();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/photos.html.twig', array(
           'galleries' => $galleries,
-            'lastProject' => $lastProject
+            'lastProject' => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
         ));
 
     }
@@ -85,8 +113,12 @@ class MainController extends AbstractController
     function helpUs() {
         $em = $this->getDoctrine()->getManager();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/help_us.html.twig', array(
-            'lastProject' => $lastProject
+            'lastProject' => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 
@@ -97,9 +129,13 @@ class MainController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $members = $em->getRepository('App:Member')->findAll();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/a_propos.html.twig', array(
             'members' => $members,
-            'lastProject' => $lastProject
+            'lastProject' => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 
@@ -109,8 +145,12 @@ class MainController extends AbstractController
     function faq() {
         $em = $this->getDoctrine()->getManager();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/faq.html.twig', array(
-            'lastProject' => $lastProject
+            'lastProject' => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 
@@ -120,8 +160,12 @@ class MainController extends AbstractController
     function contact() {
         $em = $this->getDoctrine()->getManager();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/contact.html.twig', array(
-            'lastProject' => $lastProject
+            'lastProject' => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 

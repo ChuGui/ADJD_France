@@ -8,6 +8,7 @@ $(document).on('click', '.delete-button', deleteModal);
 function deletePartner() {
     var partnerId = $(this).attr('data-partner-id');
     var url = $(this).attr('data-url');
+    console.log(url);
     $.ajax({
         url: url,
         data: {partnerId : partnerId},

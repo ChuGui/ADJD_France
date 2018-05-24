@@ -25,12 +25,17 @@ class SecurityController extends Controller
         $form = $this->createForm(LoginType::class, array(
             '_username' => $lastUsername
         ));
+        $em = $this->getDoctrine()->getManager();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
 
         return $this->render('security/login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
             'lastProject' => $lastProject,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'adress' => $adress,
+            'tel' => $tel
         ));
     }
 

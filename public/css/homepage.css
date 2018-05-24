@@ -2,13 +2,44 @@
     background: linear-gradient(-225deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%), url("../img/elements/banner.jpg");
     color: white;
     text-align: center;
-    height: 105vh;
+    height: 90vh;
     background-size: cover !important;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+h1 {
+    font-family: 'Dancing Script', Georgia, Times, serif;
+    font-size: 59px;
+    line-height: 60px;
+}
+
+.introduction {
+    font-family: 'Josefin Sans', Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    line-height: 25px;
+    margin-top: 15px;
+    color: white;
+}
+
+@media screen and (max-width: 650px) {
+    .introduction {
+        font-family: 'Josefin Sans', Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        line-height: 25px;
+        margin-top: 15px;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    h1 {
+        font-family: 'Dancing Script', Georgia, Times, serif;
+        font-size: 35px;
+        line-height: 30px;
+    }
+}
 #explication img {
     height: 100px;
     width: 100px;
@@ -20,6 +51,18 @@
 .container {
     margin-right: auto;
     margin-left: auto;
+}
+
+.edit {
+    border-radius: 50%;
+    background-color: #f1a899;
+    width: 30px;
+    height: 30px;
+    padding-top: 3px;
+    padding-left: 3px;
+}
+.edit:hover {
+    cursor: pointer;
 }
 
 

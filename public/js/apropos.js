@@ -1,57 +1,24 @@
-// Create a Stripe client
-var stripe = Stripe('pk_test_lvefCuTVu1SQoYPdJO57yFYv');
+function deleteModal() {
+    var memberId = $(this).attr('data-member-id');
+    $('#deleteMemberModal_' + memberId).modal('toggle');
+}
 
-// Create an instance of Elements
-var elements = stripe.elements();
+$(document).on('click', '.delete-button', deleteModal);
 
-// Custom styling can be passed to options when creating an Element.
-// (Note that this demo uses a wider set of styles than the guide below.)
-var style = {
-    base: {
-        color: '#32325d',
-        lineHeight: '18px',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-            color: '#aab7c4'
+function deleteMember() {
+    var memberId = $(this).attr('data-member-id');
+    var url = $(this).attr('data-url');
+    $.ajax({
+        url: url,
+        data: {memberId : memberId} ,
+        type: "GET",
+        success: function (response) {
+            $('#member_' + memberId).hide('slow')
+        },
+        error: function (xhr, status, error) {
+            $('#modal-error').modal('toggle')
         }
-    },
-    invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a'
-    }
-};
+    })
+}
 
-// Create an instance of the card Element
-var card = elements.create('card', {style: style});
-
-// Add an instance of the card Element into the `card-element` <div>
-card.mount('#card-element');
-
-// Handle real-time validation errors from the card Element.
-card.addEventListener('change', function(event) {
-    var displayError = document.getElementById('card-errors');
-    if (event.error) {
-        displayError.textContent = event.error.message;
-    } else {
-        displayError.textContent = '';
-    }
-});
-
-// Handle form submission
-var form = document.getElementById('payment-form');
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    stripe.createToken(card).then(function(result) {
-        if (result.error) {
-            // Inform the user if there was an error
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = result.error.message;
-        } else {
-            // Send the token to your server
-            stripeTokenHandler(result.token);
-        }
-    });
-});
+$(document).on('click', '.confirm-delete', deleteMember);
