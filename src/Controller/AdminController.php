@@ -211,4 +211,30 @@ class AdminController extends Controller
             return $this->redirect($this->generateUrl('homepage'));
         }
     }
+
+    /**
+     * @Route("/modify_text", name="modify_text")
+     * @Method({"GET"})
+     */
+    function modifyText(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $textId = $request->query->get('textId');
+            $content = $request->query->get('content');
+            $text = $em->getRepository('App:Text')->find($textId);
+            $text->setContent($content);
+            $em->persist($text);
+            $em->flush();
+            $newContent = $text->getContent();
+            if ($text !== null) {
+                $response = new Response ($newContent, Response::HTTP_OK, array('content-type' => 'text/html'));
+                return $response;
+            } else {
+                return new Response('Aucun membre avec cet ID', 404);
+            }
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+    }
 }

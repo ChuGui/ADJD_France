@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
     //Active l'encart
-    $('#onglet').on('click', function(){
+    $('#onglet').on('click', function () {
         $('#encart').toggleClass('activated');
         $('#encart').toggleClass('deactivated');
         $('#fa-icon').toggleClass('fa-caret-left');
@@ -8,25 +8,50 @@ $(document).ready(function() {
     })
 
     //Edite le texte seclectionné
-    function editText(){
+    function editText() {
         var id = $(this).attr('data-edit-js');
         $('.edit-js[data-edit-js = ' + id + ']').hide('slow');
         var url = '../public/get_text';
         console.log(url);
         $.ajax({
-                        url: url,
-                        data: {'textId' : id},
-                        type: "GET",
-                        dataType: "json",
-                        success: function(response) {
-                            console.log('hello');
-                        },
-                        error: function(xhr, status, error) {
-                            console.log('error');
-                        }
-                })
+            url: url,
+            data: {'textId': id},
+            type: "GET",
+            dataType: "html",
+            success: function (response) {
+                console.log(response);
+                $('.edit[data-edit-js = ' + id + ']').after('<textarea rows="5" cols="50" data-validate-id="' + id + '">' + response + '</textarea><button type="button" class="btn btn-info mb-5 ml-5 validate-edit-js" data-validate-id="' + id + '">Modifier</button>');
+            },
+            error: function (xhr, status, error) {
+                console.log('error');
+            }
+        })
     }
-    $(document).on('click','.edit', editText);
+
+    $(document).on('click', '.edit', editText);
+
+    function modifyText() {
+        var id = $(this).attr('data-validate-id');
+        var url = '../public/modify_text';
+        var content = $('textarea[data-validate-id = ' + id + ']').val();
+        console.log(content);
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: {'textId': id, 'content': content},
+            dataType: "html",
+            success: function (response) {
+                $('textarea[data-validate-id = ' + id + ']').remove();
+                $('.validate-edit-js').remove();
+                $('.edit-js[data-edit-js = ' + id + ']').html(response);
+                $('.edit-js[data-edit-js = ' + id + ']').show('slow');
+            },
+            error: function (xhr, status, error) {
+            }
+        })
+    }
+
+    $(document).on('click', '.validate-edit-js', modifyText);
 })
 
 function initMap() {
