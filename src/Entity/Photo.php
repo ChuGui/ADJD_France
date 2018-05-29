@@ -8,11 +8,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
 * @ORM\Entity
-* @ORM\Table(name="adjd_gallery")
+* @ORM\Table(name="adjd_photo")
 * @Vich\Uploadable()
- * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
 */
-class Gallery
+class Photo
 {
     /**
      * @ORM\Id
@@ -123,6 +123,4 @@ class Gallery
     {
         $this->legend = $legend;
     }
-
-
 }

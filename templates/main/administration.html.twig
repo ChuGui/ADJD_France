@@ -42,11 +42,11 @@
                 <div class="tab-pane active" id="addPicture" role="tabpanel">
                     <div class="formAdd">
                         <h3> Ajouter une photo à la galerie d'image !</h3>
-                        {{ form_start(formGallery) }}
-                        {{ form_row(formGallery.imageFile) }}
-                        {{ form_row(formGallery.legend) }}
+                        {{ form_start(formPhoto) }}
+                        {{ form_row(formPhoto.imageFile) }}
+                        {{ form_row(formPhoto.legend) }}
                         <button type="submit" class="btn btn-primary">Ajouter</button>
-                        {{ form_end(formGallery) }}
+                        {{ form_end(formPhoto) }}
                     </div>
                 </div>
                 <div class="tab-pane" id="addProject" role="tabpanel">

@@ -2,14 +2,14 @@
 
 namespace App\Form;
 
-use App\Entity\Gallery;
+use App\Entity\Photo;
 use Symfony\Component\Form\AbstractType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GalleryType extends AbstractType
+class PhotoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -34,6 +34,6 @@ class GalleryType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'gallery';
+        return 'photo';
     }
 }

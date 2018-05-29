@@ -93,12 +93,32 @@ class MainController extends AbstractController
      */
     function photos() {
         $em = $this->getDoctrine()->getManager();
-        $galleries = $em->getRepository('App:Gallery')->findAll();
+        $photos = $em->getRepository('App:Photo')->findAll();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
         $adress = $em->getRepository('App:Text')->find(5);
         $tel = $em->getRepository('App:Text')->find(6);
         return $this->render('main/photos.html.twig', array(
-          'galleries' => $galleries,
+          'photos' => $photos,
+            'lastProject' => $lastProject,
+            'adress' => $adress,
+            'tel' => $tel
+        ));
+
+    }
+
+    /**
+     * @Route("/videos", name="videos")
+     */
+    function videos() {
+        $em = $this->getDoctrine()->getManager();
+        $videos = $em->getRepository('App:Videos')->findAll();
+        $lastProject = $em->getRepository('App:Project')->findLastProject();
+        $adress = $em->getRepository('App:Text')->find(5);
+        $tel = $em->getRepository('App:Text')->find(6);
+        $lastVideo = $em->getRepository('App:Videos')->findLastVideo();
+        return $this->render('main/photos.html.twig', array(
+            'videos' => $videos,
+            'lastVideo' => $lastVideo,
             'lastProject' => $lastProject,
             'adress' => $adress,
             'tel' => $tel

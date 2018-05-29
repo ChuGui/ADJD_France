@@ -1,12 +1,12 @@
 function deleteModal() {
-    var photoId = $(this).attr('data-gallery-id');
+    var photoId = $(this).attr('data-photo-id');
     $('#deletePhotoModal_' + photoId).modal('toggle');
 }
 
 $(document).on('click', '.delete-button', deleteModal);
 
 function deletePhoto() {
-    var photoId = $(this).attr('data-gallery-id');
+    var photoId = $(this).attr('data-photo-id');
     var url = $(this).attr('data-url');
     $.ajax({
         url: url,

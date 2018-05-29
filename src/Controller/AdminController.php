@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Gallery;
+use App\Entity\Photo;
 use App\Entity\Project;
 use App\Entity\Partner;
 use App\Entity\Member;
 use App\Form\LoginType;
 use App\Entity\User;
-use App\Form\GalleryType;
+use App\Form\PhotoType;
 use App\Form\ProjectType;
 use App\Form\PartnerType;
 use App\Form\MemberType;
@@ -30,16 +30,18 @@ class AdminController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $lastProject = $em->getRepository('App:Project')->findLastProject();
+
         /*AJOUT D'UNE PHOTO*/
-        $gallery = new Gallery();
-        $formGallery = $this->createForm(GalleryType::class, $gallery);
-        $formGallery->handleRequest($request);
-        if ($formGallery->isSubmitted() && $formGallery->isValid()) {
-            $em->persist($gallery);
+        $photo = new Photo();
+        $formPhoto = $this->createForm(PhotoType::class, $photo);
+        $formPhoto->handleRequest($request);
+        if ($formPhoto->isSubmitted() && $formPhoto->isValid()) {
+            $em->persist($photo);
             $em->flush();
             $this->addFlash('notice', "La photo à bien été rajoutée");
             return $this->redirectToRoute('administration');
         }
+
         /*AJOUT D'UN PROJET*/
         $project = new Project();
         $formProject = $this->createForm(ProjectType::class, $project);
@@ -50,6 +52,7 @@ class AdminController extends Controller
             $this->addFlash('notice', "Félicitation,le projet à bien été rajouté");
             return $this->redirectToRoute('administration');
         }
+
         /*AJOUT D'UN PARTENAIRE*/
         $partner = new Partner();
         $formPartner = $this->createForm(PartnerType::class, $partner);
@@ -60,6 +63,7 @@ class AdminController extends Controller
             $this->addFlash('notice', "Le partenaire à bien été rajouté");
             return $this->redirectToRoute('administration');
         }
+
         /*AJOUT D'UN MEMBRE*/
         $member = new Member();
         $formMember = $this->createForm(MemberType::class, $member);
@@ -87,7 +91,7 @@ class AdminController extends Controller
         $tel = $em->getRepository('App:Text')->find(6);
 
         return $this->render('main/administration.html.twig', array(
-            "formGallery" => $formGallery->createView(),
+            "formPhoto" => $formPhoto->createView(),
             "formProject" => $formProject->createView(),
             "formPartner" => $formPartner->createView(),
             "formMember" => $formMember->createView(),
@@ -107,14 +111,14 @@ class AdminController extends Controller
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
             $photoId = $request->query->get('photoId');
-            $gallery = $em->getRepository('App:Gallery')->find($photoId);
-            if ($gallery !== null) {
-                $em->remove($gallery);
+            $photo = $em->getRepository('App:Photo')->find($photoId);
+            if ($photo !== null) {
+                $em->remove($photo);
                 $em->flush();
                 $response = new Response ('Photo correctement supprimée');
                 return $response;
             } else {
-                return new Response('Aucune gallery avec cet ID', 404);
+                return new Response('Aucune photo avec cet ID', 404);
             }
         } else {
             return $this->redirect($this->generateUrl('homepage'));
