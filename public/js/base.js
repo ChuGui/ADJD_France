@@ -11,7 +11,8 @@ $(document).ready(function () {
     function editText() {
         var id = $(this).attr('data-edit-js');
         $('.edit-js[data-edit-js = ' + id + ']').hide('slow');
-        var url = '../public/get_text';
+        var url = $(this).attr('data-url-js');
+        var urlModify = $(this).attr('data-url-modify-js');
         console.log(url);
         $.ajax({
             url: url,
@@ -20,7 +21,7 @@ $(document).ready(function () {
             dataType: "html",
             success: function (response) {
                 console.log(response);
-                $('.edit[data-edit-js = ' + id + ']').after('<textarea rows="5" cols="50" data-validate-id="' + id + '">' + response + '</textarea><button type="button" class="btn btn-info mb-5 ml-5 validate-edit-js" data-validate-id="' + id + '">Modifier</button>');
+                $('.edit[data-edit-js = ' + id + ']').after('<textarea rows="5" cols="50" data-validate-id="' + id + '">' + response + '</textarea><button type="button" class="btn btn-info mb-5 ml-5 validate-edit-js" data-validate-id="' + id + '" data-url-modify-js="' + urlModify + '">Modifier</button>');
             },
             error: function (xhr, status, error) {
                 console.log('error');
@@ -32,7 +33,7 @@ $(document).ready(function () {
 
     function modifyText() {
         var id = $(this).attr('data-validate-id');
-        var url = '../public/modify_text';
+        var url = $(this).attr('data-url-modify-js');
         var content = $('textarea[data-validate-id = ' + id + ']').val();
         console.log(content);
         $.ajax({
@@ -50,7 +51,6 @@ $(document).ready(function () {
             }
         })
     }
-
     $(document).on('click', '.validate-edit-js', modifyText);
 })
 

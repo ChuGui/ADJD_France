@@ -144,14 +144,14 @@
                 <div class="col-lg-12 col-xl-4 text-light">
                     <h3>Adresse ADJD :</h3>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div class="edit ml-auto" data-edit-js="{{ adress.id }}">
+                        <div class="edit ml-auto" data-edit-js="{{ adress.id }}" data-url-js="{{ path('get_text') }}" data-url-modify-js="{{ path('modify_text') }}">
                             <i class="far fa-edit"></i>
                         </div>
                     {% endif %}
                     <p class="edit-js" data-edit-js="{{ adress.id }}"> {{ adress.content }}</p>
                     <h3>Téléphone:</h3>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div class="edit ml-auto" data-edit-js="{{ tel.id }}">
+                        <div class="edit ml-auto" data-edit-js="{{ tel.id }}" data-url-js="{{ path('get_text') }}" data-url-modify-js="{{ path('modify_text') }}">
                             <i class="far fa-edit"></i>
                         </div>
                     {% endif %}

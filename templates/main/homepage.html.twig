@@ -12,7 +12,7 @@
             <div class="home-heading">
                 <h1 class="home-title">A.D.J.D - Association Dynamique pour les Jeunes et le Développement</h1>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <div class="edit ml-auto" data-edit-js="{{ textBanner.id }}">
+                    <div class="edit ml-auto" data-edit-js="{{ textBanner.id }}" data-url-js="{{ path('get_text') }}" data-url-modify-js="{{ path('modify_text') }}">
                         <i class="far fa-edit"></i>
                     </div>
                 {% endif %}
@@ -38,7 +38,7 @@
                 <div class="media-body col-12 col-lg-8">
                     <h3 class="mt-3 mt-md-0 text-center text-md-left">Qui sommes-nous ?</h3>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div class="edit ml-auto" data-edit-js="{{ panneau01.id }}">
+                        <div class="edit ml-auto" data-edit-js="{{ panneau01.id }}" data-url-js="{{ path('get_text') }}" data-url-modify-js="{{ path('modify_text') }}">
                             <i class="far fa-edit"></i>
                         </div>
                     {% endif %}
@@ -51,7 +51,7 @@
                 <div class="media-body col-12 col-md-8 order-sm-1">
                     <h3 class="mt-3 mt-md-0 text-center text-md-left">Notre objectif !</h3>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div class="edit ml-auto" data-edit-js="{{ panneau02.id }}">
+                        <div class="edit ml-auto" data-edit-js="{{ panneau02.id }}" data-url-js="{{ path('get_text') }}" data-url-modify-js="{{ path('modify_text') }}">
                             <i class="far fa-edit"></i>
                         </div>
                     {% endif %}
@@ -65,7 +65,7 @@
                 <div class="media-body col-12 col-md-8">
                     <h3 class="mt-3 mt-md-0 text-center text-md-left">Nos activités</h3>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div class="edit ml-auto" data-edit-js="{{ panneau03.id }}">
+                        <div class="edit ml-auto" data-edit-js="{{ panneau03.id }}" data-url-js="{{ path('get_text') }}" data-url-modify-js="{{ path('modify_text') }}">
                             <i class="far fa-edit"></i>
                         </div>
                     {% endif %}
