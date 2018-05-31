@@ -75,6 +75,7 @@ p {
     display: inline-block;
 }
 
+
 /*CUSTOM BOOTSTRAP*/
 
 .rounded {
@@ -214,8 +215,7 @@ p {
 
 @media screen and (max-width: 650px) {
     #encart.deactivated {
-        width: 100%;
-        left: 90%;
+        display: none;
     }
 }
 
@@ -271,10 +271,11 @@ p {
     border-radius: 5px;
 }
 
-@media screen and (max-width: 650px) {
+@media (max-width: 850px) {
     #map {
-        width: 300px;
-        margin-right: auto;
-        margin-left: auto;
+        width: 200px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
+

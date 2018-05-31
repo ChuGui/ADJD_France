@@ -13,46 +13,17 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-8 m-auto">
-                    {#------SLIDER-------#}
-
-                    <div id="slider1" class="carousel slide mb-5" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            {% for photo in photos %}
-                                <li {% if loop.first %}class="active"{% endif %} data-target="#slider1"
-                                    data-slide-to="{{ loop.index0 }}"></li>
-                            {% endfor %}
-                        </ol>
-                        <div class="carousel-inner" role="listbox">
-                            {% for photo in photos %}
-                                <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                    <img class="d-block img-fluid img-carousel"
-                                         src="{{ asset('img/uploads/'~ photo.image) }}"
-                                         alt="{{ photo.legend }}">
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <a href="#slider1" class="carousel-control-prev" data-slide="prev"><span
-                                    class="carousel-control-prev-icon"></span></a>
-                        <a href="#slider1" class="carousel-control-next" data-slide="next"><span
-                                    class="carousel-control-next-icon"></span></a>
-                    </div>
-                    {#------END SLIDER-------#}
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-sm-10 mx-auto">
                     <div class="flex-container">
                         {% for photo in photos %}
-                            <div class="flex-item" id="photo_{{ photo.id }}">
+                            <div class="flex-item " id="photo_{{ photo.id }}">
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <button href="#" class="btn btn-danger delete-button" data-photo-id="{{ photo.id }}">
                                         <i class="fas fa-times"></i>
                                     </button>
                                 {% endif %}
 
-                                <img class="card-img-top photos" src="{{ asset('img/uploads/'~ photo.image) }}"
+                                <img class="card-img-top photos" src="{{ asset('img/uploads/'~ photo.image)| imagine_filter('my_thumb') }}"
                                      alt="image_actualite">
                                 <p>{{ photo.legend }}</p>
                             </div>
@@ -108,6 +79,15 @@
             </div>
         </div>
         {#-----FIN MODAL ERREUR-----#}
+
+        {#-----MODAL SHOW PHOTO-----#}
+        <div class="modal modal-alert pt-5 modal-photo" id="show_photo">
+
+                <img id="full_photo"
+                     alt="image_actualite" >
+
+        </div>
+        {#-----END MODAL SHOW PHOTO-----#}
 
     </section>
 {% endblock %}

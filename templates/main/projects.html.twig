@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="card-title text-center px-3 mb-0">
                                         <h3>
-                                            <a href="{{ path('project', {'id': project.id}) }}">{{ project.title|upper }}</a>
+                                            <a class="titre" href="{{ path('project', {'id': project.id}) }}">{{ project.title|upper }}</a>
                                         </h3>
                                         <p class="text-white">Ajouté le
                                             : {{ project.updatedAt|localizeddate('none', 'none', null, null, 'd / m / Y') }}</p>

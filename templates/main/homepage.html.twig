@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-    <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 {% endblock %}
 {% block title %}
@@ -16,7 +16,7 @@
                         <i class="far fa-edit"></i>
                     </div>
                 {% endif %}
-                <p class="introduction edit-js" data-edit-js="{{ textBanner.id }}">{{ textBanner.content }}</p>
+                <p id="text-banner" class="introduction edit-js" data-edit-js="{{ textBanner.id }}">{{ textBanner.content }}</p>
             </div>
             <div class="container text-center mt-3">
                 <a href="{{ path('help_us') }}" class="btn btn-primary mx-auto">FAIRE UN DON</a>
@@ -28,7 +28,7 @@
     <section id="explication" style="width: 100%">
         <div class="container">
             <div class="heading">
-                <h2>Bienvenue !</h2>
+                <h2 id="bienvenue">Bienvenue !</h2>
 
                 <p class="sous-titre">L'Association Dynamique pour les Jeunes et le Développement est heureuse de vous acceuillir sur son site !</p>
             </div>
@@ -77,4 +77,7 @@
             </div>
         </div>{#Container#}
     </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/homepage.js') }}"></script>
 {% endblock %}

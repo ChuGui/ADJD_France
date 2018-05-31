@@ -5,6 +5,7 @@ function deleteModal() {
 
 $(document).on('click', '.delete-button', deleteModal);
 
+/*  SUPPRIMER UNE PHOTO PARTIE ADMIN  */
 function deletePhoto() {
     var photoId = $(this).attr('data-photo-id');
     var url = $(this).attr('data-url');
@@ -22,3 +23,12 @@ function deletePhoto() {
 }
 
 $(document).on('click', '.confirm-delete', deletePhoto);
+
+
+$('.photos').click(function(e){
+    var src = $(this).attr('src');
+    $('#show_photo').modal('toggle');
+    $('#full_photo').attr('src' , src);
+})
+
+

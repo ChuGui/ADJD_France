@@ -2,3 +2,10 @@
     height: 25px;
 }
 
+.project-image {
+    max-height: 80vh;
+    max-width: 80vh;
+    border-radius: 5px;
+    -moz-box-shadow: 3px 3px 6px 2px black;
+    -webkit-box-shadow: 3px 3px 6px black;
+}
